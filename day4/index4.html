@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+</head>
+<body>
+    <input id="city" placeholder="Enter city">
+    <button onclick="getWeather()">Search</button>
+    <h3 id="result"></h3>
+
+    <script>
+        const apiKey = "YOUR_API_KEY";
+
+        function getWeather() {
+            const city = document.getElementById("city").value;
+
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("result").innerText =
+                        `${data.name}: ${data.main.temp}°C`;
+                });
+        }
+    </script>
+</body>
+</html>
